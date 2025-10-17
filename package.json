@@ -33,7 +33,7 @@
             "dist/credentials/SalesTriggerApi.credentials.js"
         ],
         "nodes": [
-            "dist/nodes/AddLeadToCampaign/AddLeadToCampaign.node.js"
+            "dist/nodes/AddLeadToCampaign/SalesTriggerAddLeadToCampaign.node.js"
         ]
     },
     "devDependencies": {
@@ -45,5 +45,8 @@
     },
     "peerDependencies": {
         "n8n-workflow": "*"
+    },
+    "dependencies": {
+        "n8n-nodes-sales-trigger": "^0.1.1"
     }
 }
