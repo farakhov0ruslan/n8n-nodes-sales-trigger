@@ -42,7 +42,7 @@ export const nodeDescription: INodeTypeDescription = {
 				{
 					name: 'Add Lead to API Campaign',
 					value: 'addLead',
-					action: 'Add lead',
+					action: 'Add lead to api campaign',
 					description: 'Add a LinkedIn lead to a selected API campaign',
 				},
 				// {

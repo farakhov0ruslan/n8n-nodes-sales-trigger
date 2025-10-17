@@ -45,8 +45,5 @@
     },
     "peerDependencies": {
         "n8n-workflow": "*"
-    },
-    "dependencies": {
-        "n8n-nodes-sales-trigger": "^0.1.1"
     }
 }
