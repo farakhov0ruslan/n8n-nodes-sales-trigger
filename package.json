@@ -13,7 +13,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://gitlab.infra.salestrigger.io/sales-trigger/outreach/n8n-integration"
+        "url": "https://github.com/farakhov0ruslan/n8n-nodes-sales-trigger"
     },
    "scripts": {
 		"build": "n8n-node build",
