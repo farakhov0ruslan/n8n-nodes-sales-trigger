@@ -9,15 +9,15 @@ import type {
 import { NodeApiError } from 'n8n-workflow';
 
 export const nodeDescription: INodeTypeDescription = {
-	displayName: 'SalesTrigger: Add Lead to Campaign',
-	name: 'salesTriggerAddLeadToCampaign',
+	displayName: 'SalesTrigger',
+	name: 'salesTrigger',
 	icon: 'file:salestrigger.svg',
 	group: ['transform'],
 	version: 1,
-	subtitle: 'Add lead with optional messages to selected campaign',
-	description: 'Adds a lead to a SalesTrigger campaign via API',
+	subtitle: '={{$parameter.operation}}',
+	description: 'Interact with SalesTrigger API',
 	defaults: {
-		name: 'Add Lead to Campaign',
+		name: 'SalesTrigger',
 	},
 	inputs: ['main'],
 	outputs: ['main'],
@@ -28,40 +28,65 @@ export const nodeDescription: INodeTypeDescription = {
 		},
 	],
 	properties: [
-		// 1) Выбор кампании (динамически)
+		// -------------------------
+		// Operation (общая для ноды)
+		// -------------------------
+		{
+			displayName: 'Operation',
+			name: 'operation',
+			type: 'options',
+			noDataExpression: true,
+			default: 'addLead',
+			options: [
+				{
+					name: 'Add Lead to API Campaign',
+					value: 'addLead',
+					action: 'Add lead',
+					description: 'Add a LinkedIn lead to a selected API campaign',
+				},
+				{
+					name: 'Empty Action (Placeholder)',
+					value: 'emptyAction',
+					action: 'Do nothing',
+					description: 'Placeholder for a future operation (UI only for now)',
+				},
+			],
+		},
+
+		// -------------------------
+		// Параметры addLead
+		// -------------------------
 		{
 			displayName: 'Campaign Name or ID',
 			name: 'campaignId',
 			type: 'options',
-			typeOptions: {
-				loadOptionsMethod: 'getCampaigns',
-			},
+			typeOptions: { loadOptionsMethod: 'getCampaigns' },
 			required: true,
 			default: '',
+			displayOptions: { show: { operation: ['addLead'] } },
 			description:
 				'Choose a campaign to add the lead into. Choose from the list, or specify an ID using an <a href="https://docs.n8n.io/code/expressions/">expression</a>.',
 		},
-
-		// 2) Lead URL
 		{
 			displayName: 'Lead LinkedIn URL',
 			name: 'lead_linkedin_href',
 			type: 'string',
 			required: true,
 			default: '',
-			placeholder: 'https://www.linkedin.com/in/{public-ID}/',
+			displayOptions: { show: { operation: ['addLead'] } },
+			placeholder: 'https://www.linkedin.com/in/<PUBLIC-ID>/',
 		},
-
-		// 3) Сообщения 1..10
+		// Message 1..10
 		...Array.from({ length: 10 }, (_, i) => {
 			const n = i + 1;
 			return {
 				displayName: `Message ${n}`,
 				name: `message_${n}`,
 				type: 'string' as const,
-				required: n === 1, // первое обязательное, остальные опциональны
+				required: n === 1,
 				default: n === 1 ? 'Hi!' : '',
-				description: `${n} message that will be sent to the lead`,
+				displayOptions: { show: { operation: ['addLead'] } },
+				description: `Mapped to custom_field_${n}`,
 			};
 		}),
 	],
