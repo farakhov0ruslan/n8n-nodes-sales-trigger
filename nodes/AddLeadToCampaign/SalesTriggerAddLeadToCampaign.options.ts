@@ -13,6 +13,7 @@ export const nodeDescription: INodeTypeDescription = {
 	name: 'salesTrigger',
 	icon: 'file:salestrigger.svg',
 	group: ['transform'],
+	documentationUrl: 'https://farakhov0ruslan.github.io/salestrigger-integration-docs.github.io/',
 	version: 1,
 	subtitle: '={{$parameter.operation}}',
 	description: 'Interact with SalesTrigger API',
@@ -44,12 +45,12 @@ export const nodeDescription: INodeTypeDescription = {
 					action: 'Add lead',
 					description: 'Add a LinkedIn lead to a selected API campaign',
 				},
-				{
-					name: 'Empty Action (Placeholder)',
-					value: 'emptyAction',
-					action: 'Do nothing',
-					description: 'Placeholder for a future operation (UI only for now)',
-				},
+				// {
+				// 	name: 'Empty Action (Placeholder)',
+				// 	value: 'emptyAction',
+				// 	action: 'Do nothing',
+				// 	description: 'Placeholder for a future operation (UI only for now)',
+				// },
 			],
 		},
 
