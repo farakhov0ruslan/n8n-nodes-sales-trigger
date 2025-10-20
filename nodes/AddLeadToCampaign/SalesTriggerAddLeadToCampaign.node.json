@@ -1,0 +1,33 @@
+{
+  "node": "n8n-nodes-sales-trigger.salesTriggerAddLeadToCampaign",
+  "nodeVersion": "1.0",
+  "codexVersion": "1.0",
+  "categories": [
+    "Sales"
+  ],
+  "alias": [
+    "SalesTrigger",
+    "Sales Trigger",
+    "LinkedIn",
+    "Linked In",
+    "LI",
+    "Lead",
+    "Leads",
+    "Campaign",
+    "Outreach",
+    "Add Lead",
+    "List Campaigns"
+  ],
+  "resources": {
+    "primaryDocumentation": [
+      {
+        "url": "https://farakhov0ruslan.github.io/salestrigger-integration-docs.github.io/n8n.html"
+      }
+    ],
+    "credentialDocumentation": [
+      {
+        "url": "https://farakhov0ruslan.github.io/salestrigger-integration-docs.github.io/index.html"
+      }
+    ]
+  }
+}
