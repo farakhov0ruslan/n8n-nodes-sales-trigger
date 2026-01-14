@@ -17,7 +17,7 @@ export class SalesTriggerApi implements ICredentialType {
 		},
 	];
 
-	// Общая аутентификация для httpRequestWithAuthentication
+	// General authentication for httpRequestWithAuthentication
 	authenticate: IAuthenticate = {
 		type: 'generic',
 		properties: {
@@ -30,7 +30,7 @@ export class SalesTriggerApi implements ICredentialType {
 	};
 
 
-	// Проверка кредов
+	// Credential test
 	test: ICredentialTestRequest = {
 		request: {
 			method: 'GET',

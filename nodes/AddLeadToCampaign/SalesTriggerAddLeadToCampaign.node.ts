@@ -43,7 +43,7 @@ export class SalesTriggerAddLeadToCampaign implements INodeType {
 		},
 	};
 
-	// Основной вызов
+	// Main execution call
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
 		const returnData: INodeExecutionData[] = [];
@@ -53,7 +53,7 @@ export class SalesTriggerAddLeadToCampaign implements INodeType {
 				const campaignId = this.getNodeParameter('campaignId', i) as string;
 				const leadHref = this.getNodeParameter('lead_linkedin_href', i) as string;
 
-				// собираем custom_field_1..10 из введённых message_*
+				// Collect custom_field_1..10 from message_* inputs
 				const leadObject: Record<string, string> = {
 					lead_href: leadHref,
 				};
@@ -83,14 +83,14 @@ export class SalesTriggerAddLeadToCampaign implements INodeType {
 					});
 
 
-				// Требование: успешным считаем только 201
+				// Requirement: only 201 is considered successful
 				if (statusCode !== 201) {
 					throwApiErrorFromResponse(this, respBody, statusCode, i);
 				}
 
 				returnData.push({ json: { success: true, statusCode }, pairedItem: { item: i } });
 			} catch (error) {
-				// тут остаются только «неожиданные» ошибки (сеть, JS и т.п.)
+				// Only unexpected errors remain here (network, JS, etc.)
 				if (this.continueOnFail()) {
 					returnData.push({
 						json: { success: false, error: error?.message ?? 'Unknown error' },
@@ -98,7 +98,7 @@ export class SalesTriggerAddLeadToCampaign implements INodeType {
 					});
 					continue;
 				}
-				// если это уже NodeApiError — просто пробросим; если нет — обернём коротко
+				// If it's already NodeApiError - just rethrow; otherwise wrap briefly
 				if (error.name === 'NodeApiError') throw error;
 				throw new NodeApiError(
 					this.getNode(),

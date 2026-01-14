@@ -6,7 +6,7 @@ import type {
 	JsonObject,
 } from 'n8n-workflow';
 
-import { NodeApiError } from 'n8n-workflow';
+import { NodeApiError, NodeConnectionTypes } from 'n8n-workflow';
 
 export const nodeDescription: INodeTypeDescription = {
 	displayName: 'SalesTrigger',
@@ -20,8 +20,8 @@ export const nodeDescription: INodeTypeDescription = {
 	defaults: {
 		name: 'SalesTrigger',
 	},
-	inputs: ['main'],
-	outputs: ['main'],
+	inputs: [NodeConnectionTypes.Main],
+	outputs: [NodeConnectionTypes.Main],
 	credentials: [
 		{
 			name: 'salesTriggerApi',
@@ -30,7 +30,7 @@ export const nodeDescription: INodeTypeDescription = {
 	],
 	properties: [
 		// -------------------------
-		// Operation (общая для ноды)
+		// Operation (common for the node)
 		// -------------------------
 		{
 			displayName: 'Operation',
@@ -55,7 +55,7 @@ export const nodeDescription: INodeTypeDescription = {
 		},
 
 		// -------------------------
-		// Параметры addLead
+		// addLead parameters
 		// -------------------------
 		{
 			displayName: 'Campaign Name or ID',
@@ -114,7 +114,7 @@ function getFirstExtraMessage(o: Record<string, unknown>): string | undefined {
 }
 
 /**
- * Собираем и бросаем NodeApiError по коду/телу ответа (кейс: не-201).
+ * Collect and throw NodeApiError based on response code/body (case: non-201).
  */
 export function throwApiErrorFromResponse(
 	ctx: IExecuteFunctions | ILoadOptionsFunctions,
@@ -138,7 +138,7 @@ export function throwApiErrorFromResponse(
 	});
 }
 
-/** Безопасно нормализуем тело ответа в объект */
+/** Safely normalize response body to an object */
 function normalizeBody(input: unknown): Record<string, unknown> {
 	if (!input) return {};
 	if (isRecord(input)) return input as Record<string, unknown>;
