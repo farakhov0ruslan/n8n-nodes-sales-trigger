@@ -26,13 +26,16 @@ export class SalesTriggerAddLeadToCampaign implements INodeType {
 	methods = {
 		loadOptions: {
 			async getCampaigns(this: ILoadOptionsFunctions) {
+				this.logger.debug("xxxx")
 				const res = await this.helpers.httpRequestWithAuthentication.call(this, 'salesTriggerApi', {
 					method: 'GET',
-					url: 'https://outreach.salestrigger.io/api/beta/campaign/operations/list-campaigns',
+					// url: 'https://outreach.salestrigger.io/api/beta/campaign/operations/list-campaigns',
+					url: "http://0.0.0.0:15600/beta/campaign/operations/list-campaigns",
 					qs: { only_api_campaigns: true },
 				});
 
 				const list = res as unknown as CampaignListItem[];
+				this.logger.debug("dfdfdfdf")
 				return list.map(
 					({ campaign_info }): INodePropertyOptions => ({
 						name: campaign_info.campaign_name,
