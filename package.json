@@ -1,5 +1,5 @@
 {
-    "name": "n8n-nodes-sales-trigger",
+    "name": "n8n-nodes-sales-trigger-test",
     "version": "0.2.3",
     "description": "SalesTrigger custom node for n8n (Add Lead to Campaign)",
     "license": "MIT",
