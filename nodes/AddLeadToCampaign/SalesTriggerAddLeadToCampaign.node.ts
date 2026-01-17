@@ -29,8 +29,7 @@ export class SalesTriggerAddLeadToCampaign implements INodeType {
 				this.logger.debug("xxxx")
 				const res = await this.helpers.httpRequestWithAuthentication.call(this, 'salesTriggerApi', {
 					method: 'GET',
-					// url: 'https://outreach.salestrigger.io/api/beta/campaign/operations/list-campaigns',
-					url: "http://0.0.0.0:15600/beta/campaign/operations/list-campaigns",
+					url: 'https://outreach.salestrigger.io/api/beta/campaign/operations/list-campaigns',
 					qs: { only_api_campaigns: true },
 				});
 
