@@ -34,7 +34,8 @@
         ],
         "nodes": [
             "dist/nodes/AddLeadToCampaign/SalesTriggerAddLeadToCampaign.node.js"
-        ]
+        ],
+        "strict" : true
     },
     "devDependencies": {
         "@n8n/node-cli": "*",
