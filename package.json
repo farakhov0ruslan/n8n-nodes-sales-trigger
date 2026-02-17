@@ -1,6 +1,6 @@
 {
     "name": "n8n-nodes-sales-trigger",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "description": "SalesTrigger custom node for n8n (Add Lead to Campaign)",
     "license": "MIT",
     "homepage": "https://www.salestrigger.io/",
@@ -35,7 +35,7 @@
         "nodes": [
             "dist/nodes/AddLeadToCampaign/SalesTriggerAddLeadToCampaign.node.js"
         ],
-        "strict" : true
+        "strict": true
     },
     "devDependencies": {
         "@n8n/node-cli": "*",
